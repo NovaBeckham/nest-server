@@ -1,9 +1,16 @@
+/*
+ * @Description:
+ * @Author: hyx
+ * @Date: 2024-10-17 15:58:25
+ */
+
 import { Module } from '@nestjs/common'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
+import { AuthModule } from './modules/auth/auth.module'
 
 @Module({
-  imports: [],
+  imports: [AuthModule],
   controllers: [AppController],
   providers: [AppService]
 })
