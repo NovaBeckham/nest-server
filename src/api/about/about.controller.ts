@@ -6,9 +6,9 @@
 
 import { Controller, Body, Delete, Get, Param, Patch, Post } from '@nestjs/common'
 import { AboutService } from './about.service'
-import { CreateAboutDto } from './dto/create-about.dto'
+import { CreateAboutDto } from './dto/createAbout.dto'
 import { Result } from '@/common/result'
-import { UpdateAboutDto } from './dto/update-about.dto'
+import { UpdateAboutDto } from './dto/updateAbout.dto'
 
 @Controller('about')
 export class AboutController {

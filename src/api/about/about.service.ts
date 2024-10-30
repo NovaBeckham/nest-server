@@ -8,8 +8,8 @@ import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { About } from './entities/about.entity'
 import { Repository } from 'typeorm'
-import { CreateAboutDto } from './dto/create-about.dto'
-import { UpdateAboutDto } from './dto/update-about.dto'
+import { CreateAboutDto } from './dto/createAbout.dto'
+import { UpdateAboutDto } from './dto/updateAbout.dto'
 
 @Injectable()
 export class AboutService {

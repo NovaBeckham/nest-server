@@ -6,7 +6,7 @@
 
 import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
 import { Tag } from 'src/api/tag/entities/tag.entity'
-import { UserInfo } from 'src/api/user-info/entities/user-info.entity'
+import { UserInfo } from '@/api/user/entities/user.entity'
 
 @Index('article_tagId', ['tagId'], {})
 @Entity('t_article', { schema: 'aurora' })

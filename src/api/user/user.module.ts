@@ -5,10 +5,10 @@
  */
 
 import { Module } from '@nestjs/common'
-import { UserInfoService } from './user-info.service'
-import { UserInfoController } from './user-info.controller'
+import { UserInfoService } from './user.service'
+import { UserInfoController } from './user.controller'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { UserInfo } from './entities/user-info.entity'
+import { UserInfo } from './entities/user.entity'
 import { Share } from '@/utils/share'
 
 @Module({

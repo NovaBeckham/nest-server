@@ -5,9 +5,9 @@
  */
 
 import { Controller, Get, Post, Body, ParseIntPipe, Param, Query, Delete, UseGuards, Req } from '@nestjs/common'
-import { UserInfoService } from './user-info.service'
+import { UserInfoService } from './user.service'
 import { Result } from '@/common/result'
-import { UserInfo } from './entities/user-info.entity'
+import { UserInfo } from './entities/user.entity'
 import { AdminGuard } from '@/guards/admin/admin.guard'
 import { JwtGuard } from '@/guards/jwt/jwt.guard'
 

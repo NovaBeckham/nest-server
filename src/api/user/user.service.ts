@@ -5,7 +5,7 @@
  */
 
 import { Injectable } from '@nestjs/common'
-import { UserInfo } from './entities/user-info.entity'
+import { UserInfo } from './entities/user.entity'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 

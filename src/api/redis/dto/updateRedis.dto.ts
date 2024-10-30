@@ -5,6 +5,6 @@
  */
 
 import { PartialType } from '@nestjs/mapped-types'
-import { CreateRediDto } from './create-redi.dto'
+import { CreateRedisDto } from './createRedis.dto'
 
-export class UpdateRediDto extends PartialType(CreateRediDto) {}
+export class UpdateRedsiDto extends PartialType(CreateRedisDto) {}
