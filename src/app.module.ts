@@ -27,7 +27,7 @@ import { RedisModule } from './api/redis/redis.module'
         host: configService.get<string>('DATABASE_HOST', 'localhost'), // 从环境变量获取，如果不存在则默认为 'localhost'
         port: configService.get<number>('DATABASE_PORT', 3306), // 从环境变量获取，如果不存在则默认为 3306
         username: configService.get<string>('DATABASE_USERNAME', 'root'), // 从环境变量获取，如果不存在则默认为 'root'
-        password: configService.get<string>('DATABASE_PASSWORD', '123456'), // 从环境变量获取，如果不存在则默认为 '123456'
+        password: configService.get<string>('DATABASE_PASSWORD', 'admin5698'), // 从环境变量获取，如果不存在则默认为 '123456'
         database: configService.get<string>('DATABASE_NAME', 'nova'), // 从环境变量获取，如果不存在则默认为 'aurora'
         entities: [__dirname + '/**/**/*.entity{.ts,.js}'],
         retryDelay: 500,

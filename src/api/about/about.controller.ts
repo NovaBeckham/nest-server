@@ -4,12 +4,13 @@
  * @Date: 2024-10-18 15:41:18
  */
 
-import { Body, Delete, Get, Param, Patch, Post } from '@nestjs/common'
+import { Controller, Body, Delete, Get, Param, Patch, Post } from '@nestjs/common'
 import { AboutService } from './about.service'
 import { CreateAboutDto } from './dto/create-about.dto'
 import { Result } from '@/common/result'
 import { UpdateAboutDto } from './dto/update-about.dto'
 
+@Controller('about')
 export class AboutController {
   constructor(private readonly aboutService: AboutService) {}
 
