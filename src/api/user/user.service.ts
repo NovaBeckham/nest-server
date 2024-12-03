@@ -28,12 +28,10 @@ export class UserInfoService {
 
   async isExistUser(nickname: string) {
     const res = await this.userRepository
-      .createQueryBuilder('userinfo')
+      .createQueryBuilder('userInfo')
       .select()
-      .addSelect('userinfo.password')
-      .leftJoin('userinfo.userRole', 'role')
-      .addSelect(['role.id', 'role.roleName'])
-      .where('userinfo.nickname=:nickname', { nickname })
+      .addSelect('userInfo.password')
+      .where('userInfo.nickname=:nickname', { nickname })
       .getOne()
     return res
   }
@@ -44,17 +42,17 @@ export class UserInfoService {
   }
 
   async findAllByPage(pageNum: number, pageSize: number, nickname: string) {
-    const queryBuilder = await this.userRepository
-      .createQueryBuilder('userinfo')
-      .leftJoin('userinfo.userRole', 'role')
+    const queryBuilder = this.userRepository
+      .createQueryBuilder('userInfo')
+      .leftJoin('userInfo.userRole', 'role')
       .addSelect(['role.id', 'role.roleName'])
-      .where('userinfo.nickname LIKE :nickname', {
+      .where('userInfo.nickname LIKE :nickname', {
         nickname: `%${nickname}%`
       })
 
     const data = await queryBuilder
       .select()
-      .orderBy('userinfo.id', 'DESC')
+      .orderBy('userInfo.id', 'DESC')
       .skip((pageNum - 1) * pageSize)
       .take(pageSize)
       .getMany()
@@ -70,7 +68,7 @@ export class UserInfoService {
       .where('user.id=:id', { id })
       .getOne()
 
-    return { userinfo: data }
+    return { userInfo: data }
   }
 
   remove(id: number, flag: number) {

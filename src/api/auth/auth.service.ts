@@ -6,20 +6,24 @@
 
 import { Injectable } from '@nestjs/common'
 import { UserInfoService } from '../user/user.service'
-import { compare } from 'bcrypt'
+import { CreateUserInfoDto } from '../user/dto/createUser.dto'
+import { loginError } from '@/common/exception'
+import { UserInfo } from '../user/entities/user.entity'
+import { createHash } from 'crypto'
 
 @Injectable()
 export class AuthService {
-  constructor(
-    private readonly userInfoService: UserInfoService
-  ) {}
+  constructor(private readonly userInfoService: UserInfoService) {}
 
-  async signin(nickname: string, password: string) {
-    const userInfo = await this.userInfoService.isExistUser(nickname)
-    const flag = await compare(password, userInfo.password)
-
-    if (userInfo && flag) {
-
+  async signup(registerUser: CreateUserInfoDto) {
+    const userFlag = await this.userInfoService.isExistUser(registerUser.nickname)
+    if (userFlag) {
+      throw new loginError('用户已存在')
     }
+
+    const user = new UserInfo()
+    user.nickname = registerUser.nickname
+    user.password = createHash('sha256').update(registerUser.password).digest('hex')
+    return this.userInfoService.create(user)
   }
 }

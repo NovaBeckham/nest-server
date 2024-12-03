@@ -7,20 +7,24 @@
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 import { Response } from './common/response'
-import { HttpFilter } from './common/filter'
 import { ValidationPipe } from '@nestjs/common'
+import { HttpFilter } from './common/filter'
+import { ExceptionLogService } from './api/exception/exception.service'
+import helmet from 'helmet'
 
 async function bootstrap() {
-
   const app = await NestFactory.create(AppModule)
+
+  const exceptionLogService = app.get(ExceptionLogService)
 
   app.useGlobalInterceptors(new Response())
 
-  app.useGlobalFilters(new HttpFilter())
+  app.useGlobalFilters(new HttpFilter(exceptionLogService))
 
-  app.useGlobalPipes(new ValidationPipe)
+  app.useGlobalPipes(new ValidationPipe())
+
+  app.use(helmet())
 
   await app.listen(process.env.PORT ?? 3000)
-
 }
 bootstrap()

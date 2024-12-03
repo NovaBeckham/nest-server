@@ -123,5 +123,5 @@ export class Article {
     onUpdate: 'CASCADE'
   })
   @JoinColumn([{ name: 'user_id', referencedColumnName: 'id' }])
-  userinfo: UserInfo
+  userInfo: UserInfo
 }

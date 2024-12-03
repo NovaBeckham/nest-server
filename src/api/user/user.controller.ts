@@ -11,7 +11,7 @@ import { UserInfo } from './entities/user.entity'
 import { AdminGuard } from '@/guards/admin/admin.guard'
 import { JwtGuard } from '@/guards/jwt/jwt.guard'
 
-@Controller('userinfo')
+@Controller('userInfo')
 export class UserInfoController {
   constructor(private readonly userInfoService: UserInfoService) {}
 

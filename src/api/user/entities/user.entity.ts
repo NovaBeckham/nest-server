@@ -77,6 +77,6 @@ export class UserInfo {
   })
   updateTime: Date | null
 
-  @OneToMany(() => Article, (article) => article.userinfo)
+  @OneToMany(() => Article, (article) => article.userInfo)
   articles: Article[]
 }

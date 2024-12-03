@@ -36,7 +36,7 @@ export class ArticleService {
     const queryBuilder = await this.articleRepository
       .createQueryBuilder('article')
       .leftJoin('article.tag', 'tag')
-      .leftJoin('article.userinfo', 'userinfo')
+      .leftJoin('article.userInfo', 'userInfo')
       .where('article.articleTitle LIKE :articleTitle', {
         articleTitle: `%${articleTitle}%`
       })
@@ -56,7 +56,7 @@ export class ArticleService {
     const data = await queryBuilder
       .select()
       .addSelect(['tag.tagName', 'tag.id'])
-      .addSelect(['userinfo.nickname', 'userinfo.avatar'])
+      .addSelect(['userInfo.nickname', 'userInfo.avatar'])
       .orderBy('article.id', 'DESC')
       .skip((pageNum - 1) * pageSize)
       .take(pageSize)
@@ -80,8 +80,8 @@ export class ArticleService {
       .select()
       .leftJoin('article.tag', 'tag')
       .addSelect('tag.tagName')
-      .leftJoin('article.userinfo', 'userinfo')
-      .addSelect(['userinfo.nickname', 'userinfo.avatar'])
+      .leftJoin('article.userInfo', 'userInfo')
+      .addSelect(['userInfo.nickname', 'userInfo.avatar'])
       .andWhere('article.isDelete=:isDelete', { isDelete: 0 })
       .orderBy('article.id', 'DESC')
       .getMany()
@@ -95,8 +95,8 @@ export class ArticleService {
       .select()
       .leftJoin('article.tag', 'tag')
       .addSelect('tag.tagName')
-      .leftJoin('article.userinfo', 'userinfo')
-      .addSelect(['userinfo.nickname', 'userinfo.avatar'])
+      .leftJoin('article.userInfo', 'userInfo')
+      .addSelect(['userInfo.nickname', 'userInfo.avatar'])
       .where('article.id=:id', { id })
       .andWhere('article.isDelete=:isDelete', { isDelete: 0 })
       .getOne()
