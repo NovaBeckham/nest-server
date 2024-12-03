@@ -12,15 +12,19 @@ import { PassportModule } from '@nestjs/passport'
 import { JwtModule } from '@nestjs/jwt'
 import { jwtConstants } from '@/constants/jwt'
 import { JwtStrategy } from './auth.strategy'
+import { RedisModule } from '../redis/redis.module'
+import { RefresTokenModule } from '../refresh-token/refresh-token.module'
 
 @Module({
   imports: [
     UserInfoModule,
     PassportModule,
+    RedisModule,
     JwtModule.register({
       secret: jwtConstants.secret,
       signOptions: { expiresIn: '2d' }
-    })
+    }),
+    RefresTokenModule
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],
