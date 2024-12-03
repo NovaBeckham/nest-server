@@ -9,10 +9,7 @@ import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { AboutModule } from './api/about/about.module'
 import { UserInfoModule } from './api/user/user.module'
-import { TagModule } from './api/tag/tag.module'
-import { ArticleModule } from './api/article/article.module'
 import { RedisModule } from './api/redis/redis.module'
 import { AuthModule } from './api/auth/auth.module'
 import { LoggerModule } from './api/logger/logger.module'
@@ -42,10 +39,7 @@ import { LoggerMiddleware } from './middlewares/logger.middleware'
       }),
       inject: [ConfigService] // 注入 ConfigService 依赖
     }),
-    AboutModule,
     UserInfoModule,
-    TagModule,
-    ArticleModule,
     RedisModule,
     AuthModule,
     LoggerModule,

@@ -4,9 +4,7 @@
  * @Date: 2024-10-18 16:55:52
  */
 
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
-
-import { Article } from 'src/api/article/entities/article.entity'
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
 @Entity('t_user_info', { schema: 'aurora' })
 export class UserInfo {
@@ -76,7 +74,4 @@ export class UserInfo {
     default: () => 'CURRENT_TIMESTAMP'
   })
   updateTime: Date | null
-
-  @OneToMany(() => Article, (article) => article.userInfo)
-  articles: Article[]
 }
