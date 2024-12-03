@@ -30,11 +30,11 @@ import { LoggerMiddleware } from './middlewares/logger.middleware'
     TypeOrmModule.forRootAsync({
       useFactory: (configService: ConfigService) => ({
         type: 'mysql',
-        host: configService.get<string>('DATABASE_HOST', '47.119.126.175'), // 从环境变量获取，如果不存在则默认为 'localhost'
-        port: configService.get<number>('DATABASE_PORT', 3306), // 从环境变量获取，如果不存在则默认为 3306
-        username: configService.get<string>('DATABASE_USERNAME', 'heyuxin'), // 从环境变量获取，如果不存在则默认为 'root'
-        password: configService.get<string>('DATABASE_PASSWORD', 'heyuxin5698'), // 从环境变量获取，如果不存在则默认为 '123456'
-        database: configService.get<string>('DATABASE_NAME', 'nova'), // 从环境变量获取，如果不存在则默认为 'aurora'
+        host: configService.get<string>('DATABASE_HOST'),
+        port: configService.get<number>('DATABASE_PORT'),
+        username: configService.get<string>('DATABASE_USERNAME'),
+        password: configService.get<string>('DATABASE_PASSWORD'),
+        database: configService.get<string>('DATABASE_NAME'),
         entities: [__dirname + '/**/**/*.entity{.ts,.js}'],
         retryDelay: 500,
         retryAttempts: 10,
