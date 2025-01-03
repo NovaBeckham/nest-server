@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// User - sex
+enum Sex {
+  FEMALE
+  MALE
+}
+
+// User - status
+enum Status {
+  ACTIVE
+  INACTIVE
+}
+
+model User {
+  id            String          @id @default(uuid()) // 主键
+  userName      String          @unique // 用户名
+  password      String          // 密码
+  cnName        String          // 中文名
+  email         String          @unique // 电子邮箱
+  phone         String          @unique // 手机号
+  avatar        String          // 头像
+  sex           Sex             @default(FEMALE) // 性别
+  status        Status          @default(ACTIVE) // 状态
+  sort          Int             // 排序
+  token         String?         // token
+  tags          String          // 标签
+  city          String          // 城市
+  address       String?         // 详细地址
+  roleId        String          // 关联的角色 id
+  loginCount    Int             @default(0) // 登录次数
+  lastIp        String?         // 最后登录ip
+  lastLoginAt   DateTime?       // 最后登录时间
+  createTime    DateTime        @default(now()) // 创建时间
+  updateTime    DateTime        @updatedAt // 更新时间
+}
