@@ -1,17 +1,20 @@
-import { Body, Post, Req, Session } from '@nestjs/common'
+import { Module } from '@nestjs/common'
+import { PrismaModule } from '../prisma/prisma.module'
+import { JwtModule } from '@nestjs/jwt'
+import { AuthController } from './auth.controller'
 import { AuthService } from './auth.service'
-import { LoginParamsDto } from './dto/params-auth.dto'
-import { Request } from 'express'
-import { getRealIp } from '@/utils'
+import { JwtStrategy } from './jwt.strategy'
 
-export class AuthController {
-  constructor(private readonly authService: AuthService) {}
-
-  /**
-   * @description: 用户登录
-   */
-  @Post('/login')
-  login(@Body() body: LoginParamsDto, @Session() session: CommonType.SessionInfo, @Req() req: Request) {
-    return this.authService.login(body, session, getRealIp(req))
-  }
-}
+@Module({
+  imports: [
+    PrismaModule,
+    JwtModule.register({
+      secret: process.env.JWT_SECRET,
+      signOptions: { expiresIn: '15m' },
+    }),
+  ],
+  controllers: [AuthController],
+  providers: [AuthService, JwtStrategy],
+  exports: [AuthService],
+})
+export class AuthModule {}
